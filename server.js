@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const expect = require('chai').expect
 const cors = require('cors')
+const helmet = require('helmet')
 
 const apiRoutes = require('./routes/api.js')
 const fccTestingRoutes = require('./routes/fcctesting.js')
@@ -17,6 +18,17 @@ app.use(cors({ origin: '*' })) //For FCC testing purposes only
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+//Security features
+app.use(
+    helmet({
+        hidePoweredBy: { setTo: 'PHP 4.2.0' },
+        xssFilter: { setOnOldIE: true },
+        frameguard: { action: 'sameorigin' },
+        dnsPrefetchControl: { allow: false },
+        referrerPolicy: { policy: 'same-origin' },
+    })
+)
 
 //Sample front-end
 app.route('/b/:board/').get(function(req, res) {

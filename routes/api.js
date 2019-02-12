@@ -1,19 +1,17 @@
 /*
-*
-*
-*       Complete the API routing below
-*
-*
-*/
+ *
+ *
+ *       Complete the API routing below
+ *
+ *
+ */
 
-'use strict';
+'use strict'
 
-var expect = require('chai').expect;
+const expect = require('chai').expect
 
-module.exports = function (app) {
-  
-  app.route('/api/threads/:board');
-    
-  app.route('/api/replies/:board');
+module.exports = function(app) {
+    app.route('/api/threads/:board')
 
-};
+    app.route('/api/replies/:board')
+}
